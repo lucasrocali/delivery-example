@@ -1,67 +1,36 @@
-const production = false;
 
-var API = '';
+var envs = {
+    dev: {
+        api: 'http://192.168.0.52:3000',
+    },
+    stg: {
+        api: '',
+    }
+}
 
-const Accept = 'application/kids-places.v1+json';
+const env = envs.dev
 
-function authHeader() {
+const Accept = 'application/appointment.v1+json';
+
+var API = env.api;
+
+const header = () => {
     return {
         'Accept': Accept,
         'Content-Type': 'application/json'
     }
 }
 
-function header(token) {
-    return {
-        'Content-Type': 'application/json',
-        'Accept': Accept,
-        'Authorization': token
-    }
-}
-
-if (!production) {
-    API = 'http://192.168.1.102:3000';
-}
-
-export function loginRequest(user_login) {
+export function loginRequest(email, password) {
     return fetch(`${API}/auth/login`, {
         method: 'POST',
-        headers: authHeader(),
+        headers: header(),
         body: JSON.stringify({
-            email: user_login.email.toLowerCase(),
-            password: user_login.password,
-            login_type: user_login.login_type,
-            name: user_login.name,
-            img_url: user_login.img_url,
-            social_id: user_login.social_id
+            email: email.toLowerCase(),
+            password: password
         })
     })
         .then(response => response.json())
-        .then(data => data)
-        .catch((error) => { throw error });
-}
-
-export function signupRequest(user_signup) {
-    return fetch(`${API}/signup`, {
-        method: 'POST',
-        headers: authHeader(),
-        body: JSON.stringify({
-            email: user_signup.email,
-            password: user_signup.password,
-            password_confirmation: user_signup.password_confirmation,
-            name: user_signup.name,
-        })
-    })
-        .then(response => response.json())
-        .then(data => data)
-        .catch((error) => { throw error });
-}
-
-export function getCategoriesRequest(token) {
-    console.log('getCategoriesRequest')
-    return fetch(`${API}/categories`, {
-        method: 'GET'
-    }).then(response => response.json())
         .then(data => data)
         .catch((error) => { throw error });
 }

@@ -7,13 +7,13 @@ import { } from '../store/auth/action'
 import * as selectors from '../store/auth/selector';
 import styled from "styled-components";
 
-export const Container = styled.View`
+const Container = styled.View`
     flex: 1;
     align-items: center;
     justify-content: center;
 `;
 
-export const Text = styled.Text`
+const Text = styled.Text`
     font-size: 20
 `;
 
@@ -24,7 +24,15 @@ type State = {
 type Props = {
 
 }
+
 class Base extends Component<Props, State> {
+
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+
+        };
+    }
 
     render() {
         return (
@@ -33,10 +41,6 @@ class Base extends Component<Props, State> {
             </Container>
         );
     }
-}
-
-Base.propTypes = {
-
 }
 
 export default connect(

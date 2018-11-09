@@ -1,25 +1,30 @@
 
 import * as actionTypes from './actionType'
 
-export function login(user) {
+export function login(email, password) {
     return {
-        type: actionTypes.AUTHENTIFICATION,
-        payload: {
-            login: true,
-            user: user
-        }
+        type: actionTypes.AUTH,
+        email,
+        password
     }
 }
 
-export function signup(name, email, password, password_confirmation) {
+export function setLoading(loading) {
     return {
-        type: actionTypes.AUTHENTIFICATION,
-        payload: {
-            login: false,
-            name: name,
-            email: email,
-            password: password,
-            password_confirmation: password_confirmation
-        }
+        type: actionTypes.AUTH_LOADING,
+        loading
+    }
+}
+
+export function setSuccess(user) {
+    return {
+        type: actionTypes.AUTH_SUCCESS,
+        user
+    }
+}
+
+export function logout() {
+    return {
+        type: actionTypes.LOGOUT
     }
 }

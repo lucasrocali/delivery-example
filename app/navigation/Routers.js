@@ -4,27 +4,27 @@ import { connect } from 'react-redux';
 import { StackNavigator, TabNavigator, TabBarBottom, NavigationActions, DrawerNavigator } from 'react-navigation';
 import Ionicon from "react-native-vector-icons/Ionicons";
 
-import Colors from '../constants/Colors';
+import colors from '../constants/colors';
 
 import BaseScreen from '../screens/BaseScreen';
-import CategoriesScreen from '../screens/CategoriesScreen';
+import LoginScreen from '../screens/LoginScreen';
+import PerfilScreen from '../screens/PerfilScreen';
 
-const CategoriesStack = StackNavigator(
-    {
-        Categories: {
-            screen: CategoriesScreen,
-        },
-    }
-);
+export const screenNames = {
+    Login: 'Login',
+    Perfil: 'Perfil',
+}
 
 export const AppNavigator = StackNavigator(
     {
-        Main: {
-            screen: CategoriesStack
-        }
-    }, {
-        navigationOptions: {
-            header: null,
+        [screenNames.Login]: {
+            screen: LoginScreen,
         },
+        [screenNames.Perfil]: {
+            screen: PerfilScreen,
+        },
+    }, {
+        initialRouteName: screenNames.Login,
+        mode: 'modal',
     }
 );
