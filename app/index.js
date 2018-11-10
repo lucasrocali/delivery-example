@@ -4,6 +4,8 @@ import React from 'react';
 import { Provider } from 'react-redux'
 import RootNavigation from './navigation/RootNavigation';
 import store from './store'
+console.disableYellowBox = true;
+
 type State = {
 
 }

@@ -10,21 +10,41 @@ import BaseScreen from '../screens/BaseScreen';
 import LoginScreen from '../screens/LoginScreen';
 import PerfilScreen from '../screens/PerfilScreen';
 
+import StoresScreen from '../screens/StoresScreen';
+
 export const screenNames = {
     Login: 'Login',
     Perfil: 'Perfil',
+    Stores: 'Stores',
+    StoreDetail: 'StoreDetail',
+
+    //Stacks
+    StoresStack: 'StoresStack'
 }
+
+const StoresStack = StackNavigator({
+    [screenNames.Stores]: {
+        screen: StoresScreen
+    },
+    [screenNames.StoreDetail]: {
+        screen: BaseScreen
+    }
+})
 
 export const AppNavigator = StackNavigator(
     {
-        [screenNames.Login]: {
-            screen: LoginScreen,
-        },
-        [screenNames.Perfil]: {
-            screen: PerfilScreen,
-        },
+        // [screenNames.Login]: {
+        //     screen: LoginScreen,
+        // },
+        // [screenNames.Perfil]: {
+        //     screen: PerfilScreen,
+        // },
+        [screenNames.StoresStack]: {
+            screen: StoresStack
+        }
     }, {
-        initialRouteName: screenNames.Login,
+        initialRouteName: screenNames.StoresStack,
         mode: 'modal',
+        headerMode: 'none'
     }
 );

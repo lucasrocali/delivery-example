@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 import { } from '../styled/index'
-import spacing from '../../constants/spacing';
 import colors from '../../constants/colors';
 
 const Container = styled.View`
