@@ -57,7 +57,7 @@ class Base extends Component<Props, State> {
 
 export default connect(
     state => ({
-        loading: authSelectors.getLoadding(state),
+        loading: authSelectors.getLoading(state),
         user: authSelectors.getUser(state)
     }),
     { logout }

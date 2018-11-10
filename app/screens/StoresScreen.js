@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { } from '../store/auth/action'
-import * as selectors from '../store/auth/selector';
+import { loadStores } from '../store/stores/action'
+import * as storesSelector from '../store/stores/selector';
 import colors from '../constants/colors';
 import styled from "styled-components";
 
@@ -44,27 +44,35 @@ class Stores extends Component<Props, State> {
         };
     }
 
+    componentWillMount() {
+        const { loadStores } = this.props
+        loadStores()
+    }
+
     renderHeader() {
         return (
             <Header>
-                <Text>Header</Text>
+                <Text>Lojas</Text>
             </Header>
         )
     }
 
-    renderItem() {
+    renderItem({ item: store }) {
         return (
             <StoreCell
+                store={store}
                 onStorePress={() => console.log(' onStorePress')}
             />
         )
     }
 
     render() {
+        const { stores } = this.props
+        console.log('STORES SCREEN render', stores)
         return (
             <Container>
                 <FlatList
-                    data={[1, 2]}
+                    data={stores}
                     renderItem={this.renderItem}
                     ListHeaderComponent={this.renderHeader}
                 />
@@ -75,7 +83,8 @@ class Stores extends Component<Props, State> {
 
 export default connect(
     state => ({
-
+        loading: storesSelector.getLoading(state),
+        stores: storesSelector.getStores(state)
     }),
-    {}
+    { loadStores }
 )(Stores)

@@ -1,4 +1,4 @@
-export function getLoadding(state) {
+export function getLoading(state) {
     return state.auth_reducer.loading
 }
 

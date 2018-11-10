@@ -4,11 +4,11 @@ var envs = {
         api: 'http://192.168.0.52:3000',
     },
     stg: {
-        api: '',
+        api: 'https://young-shelf-65999.herokuapp.com',
     }
 }
 
-const env = envs.dev
+const env = envs.stg
 
 const Accept = 'application/appointment.v1+json';
 
@@ -29,6 +29,16 @@ export function loginRequest(email, password) {
             email: email.toLowerCase(),
             password: password
         })
+    })
+        .then(response => response.json())
+        .then(data => data)
+        .catch((error) => { throw error });
+}
+
+export function loadStoresRequest() {
+    return fetch(`${API}/stores`, {
+        method: 'GET',
+        headers: header()
     })
         .then(response => response.json())
         .then(data => data)

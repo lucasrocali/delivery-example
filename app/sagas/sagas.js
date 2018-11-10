@@ -9,10 +9,13 @@ import { screenNames } from '../navigation/Routers'
 import * as authActionTypes from "../store/auth/actionType";
 import * as authActions from "../store/auth/action";
 
+import * as storesActionTypes from '../store/stores/actionType';
+import * as storesActions from '../store/stores/action';
+
 import * as realApi from "../api/"
 import * as mockApi from '../api/mock'
 // import { loginRequest, getCategoriesRequest } from "../api/mock.js"
-const api = mockApi
+const api = realApi
 const getToken = state => state.reducers.authentication.auth_token;
 const getSearch = state => state.reducers.search;
 
@@ -37,6 +40,25 @@ const authenticate = function* (action) {
     }
 };
 
+const loadStores = function* (action) {
+    try {
+        yield put(storesActions.setLoading(true))
+
+        const response = yield call(api.loadStoresRequest)
+
+        yield put(storesActions.setLoading(false))
+
+        if (response && Array.isArray(response)) {
+            yield put(storesActions.setSuccess(response))
+
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 export function* root(): Saga<void> {
     yield takeLatest(authActionTypes.AUTH, authenticate)
+    yield takeLatest(storesActionTypes.LOAD_STORE, loadStores)
 };
