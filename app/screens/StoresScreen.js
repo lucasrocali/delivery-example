@@ -9,6 +9,8 @@ import * as storesSelector from '../store/stores/selector';
 import colors from '../constants/colors';
 import styled from "styled-components";
 
+import { screenNames } from '../navigation/Routers'
+
 import StoreCell from './components/StoreCell';
 
 const Container = styled.View`
@@ -58,22 +60,23 @@ class Stores extends Component<Props, State> {
     }
 
     renderItem({ item: store }) {
+        const { navigation } = this.props
         return (
             <StoreCell
                 store={store}
-                onStorePress={() => console.log(' onStorePress')}
+                onStorePress={() => navigation.navigate({ routeName: screenNames.StoreDetail, params: { store: store } })}
             />
         )
     }
 
     render() {
-        const { stores } = this.props
+        const { stores, navigation } = this.props
         console.log('STORES SCREEN render', stores)
         return (
             <Container>
                 <FlatList
                     data={stores}
-                    renderItem={this.renderItem}
+                    renderItem={this.renderItem.bind(this)}
                     ListHeaderComponent={this.renderHeader}
                 />
             </Container>

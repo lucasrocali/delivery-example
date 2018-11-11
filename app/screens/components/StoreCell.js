@@ -9,7 +9,7 @@ const Container = styled.TouchableOpacity`
     padding-horizontal: 20;
     border-radius: 5;
     border-color: ${colors.light_gray};
-    border-width: 1;
+    border-bottom-width: 1;
 `;
 
 // const Image = styled.Image`

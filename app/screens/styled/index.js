@@ -7,3 +7,7 @@ export const Button = styled.TouchableOpacity`
     padding-horizontal: 10;
     border-radius: 10;
 `
+
+export const PrimaryButton = styled(Button) `
+
+`

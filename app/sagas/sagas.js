@@ -15,7 +15,7 @@ import * as storesActions from '../store/stores/action';
 import * as realApi from "../api/"
 import * as mockApi from '../api/mock'
 // import { loginRequest, getCategoriesRequest } from "../api/mock.js"
-const api = realApi
+const api = mockApi
 const getToken = state => state.reducers.authentication.auth_token;
 const getSearch = state => state.reducers.search;
 

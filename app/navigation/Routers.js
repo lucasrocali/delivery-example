@@ -11,6 +11,7 @@ import LoginScreen from '../screens/LoginScreen';
 import PerfilScreen from '../screens/PerfilScreen';
 
 import StoresScreen from '../screens/StoresScreen';
+import StoreDetailScreen from '../screens/StoreDetailScreen'
 
 export const screenNames = {
     Login: 'Login',
@@ -27,7 +28,7 @@ const StoresStack = StackNavigator({
         screen: StoresScreen
     },
     [screenNames.StoreDetail]: {
-        screen: BaseScreen
+        screen: StoreDetailScreen
     }
 })
 
